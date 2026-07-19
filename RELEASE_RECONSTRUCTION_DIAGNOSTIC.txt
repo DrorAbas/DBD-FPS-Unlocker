@@ -1,0 +1,4 @@
+Branch: bootstrap-application-source
+Commit: 45398c16ade8f275fc33dfc8fdedc372225770c7
+Result: failure
+Error: The .release-parts directory is missing.
