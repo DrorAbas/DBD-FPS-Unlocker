@@ -1,0 +1,7 @@
+Branch: bootstrap-application-source
+Commit: d587dd521a8686c7f234e119ade00e3aca74d4e1
+Chunk count: 27
+Chunk names: chunk_00.b64, chunk_01.b64, chunk_02.b64, chunk_03.b64, chunk_04.b64, chunk_05.b64, chunk_06.b64, chunk_07.b64, chunk_08.b64, chunk_09.b64, chunk_10.b64, chunk_11.b64, chunk_12.b64, chunk_13.b64, chunk_14.b64, chunk_15.b64, chunk_16.b64, chunk_17.b64, chunk_18.b64, chunk_19.b64, chunk_20.b64, chunk_21.b64, chunk_22.b64, chunk_23.b64, chunk_24.b64, chunk_25.b64, chunk_26.b64
+Base64 length: 40467
+Result: failure
+Error: Exception calling "FromBase64String" with "1" argument(s): "The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters."
