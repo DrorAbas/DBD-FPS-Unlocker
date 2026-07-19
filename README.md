@@ -44,7 +44,7 @@ AI-generated code can contain mistakes. Review the source, keep backups and repo
 
 ## Download and run
 
-1. Download the latest release ZIP from the repository's **Releases** page.
+1. Download the verified [DBD-FPS-Unlocker-v1.0.0.zip](https://github.com/DrorAbas/DBD-FPS-Unlocker/raw/main/dist/DBD-FPS-Unlocker-v1.0.0.zip).
 2. Extract the entire ZIP to a normal folder.
 3. Close Dead by Daylight completely.
 4. Double-click:
