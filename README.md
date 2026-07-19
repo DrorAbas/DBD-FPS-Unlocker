@@ -182,16 +182,17 @@ Official sources:
 - [Dead by Daylight — Game Bans](https://support.deadbydaylight.com/hc/en-us/articles/45521322753428-Game-Bans)
 - [Dead by Daylight — End User License Agreement](https://deadbydaylight.com/eula/)
 - [BHVR Community Manager warning: altering files is done at your own risk and may trigger EAC](https://forums.bhvr.com/dead-by-daylight/discussion/181346/editing-config-files)
+- [BHVR Community Manager, 2022: editing game files is at your own risk and automatic bans may not be reversible](https://forums.bhvr.com/dead-by-daylight/discussion/314345/is-editing-the-player-settings-in-the-config-file-bannable)
 - [BHVR developer response: they would not actively hunt users for unlocking FPS, but file editing remained at the user's risk](https://forums.bhvr.com/dead-by-daylight/discussion/36387/could-we-get-an-offical-respond-to-unlocking-fps)
 
 ### What players have reported
 
 The following links are **community anecdotes**, not official permission and not proof of future safety:
 
-- [A player reported using an FPS change for almost two years without a ban](https://forums.bhvr.com/dead-by-daylight/discussion/128567/question-about-ini-files)
-- [A player reported using an uncapped configuration for years without problems](https://forums.bhvr.com/dead-by-daylight/discussion/172932/vsync-and-fps-cap)
+- [A player group reported using uncapped FPS since at least 2017 without problems](https://forums.bhvr.com/dead-by-daylight/discussion/282770/is-uncapping-framerate-bannable)
+- [Older community discussion includes users reporting more than a year and multiple years without a ban](https://forums.bhvr.com/dead-by-daylight/discussion/37041/how-do-i-unlock-my-fps)
 - [A 2023 Steam discussion includes a player reporting roughly 800 hours at 120 FPS without issues](https://steamcommunity.com/app/381210/discussions/0/3800526843213219849/)
-- [Older community discussion with users reporting long-term FPS unlocking without a ban](https://forums.bhvr.com/dead-by-daylight/discussion/37041/how-do-i-unlock-my-fps)
+- [A 2021 BHVR community answer describes FPS uncapping as widely used, but it is not an official staff guarantee](https://forums.bhvr.com/dead-by-daylight/discussion/258017/how-unlock-fps)
 
 ### Were people verified as banned only for this FPS change?
 
