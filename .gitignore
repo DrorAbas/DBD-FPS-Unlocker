@@ -1,0 +1,19 @@
+# Local application data
+settings.json
+Backups/
+*.log
+*.tmp
+
+# Windows
+Thumbs.db
+Desktop.ini
+*.lnk
+
+# Editors
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Release staging
+release-staging/
