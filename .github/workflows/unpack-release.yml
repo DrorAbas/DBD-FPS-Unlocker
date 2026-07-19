@@ -36,6 +36,11 @@ jobs:
             $parts = @(Get-ChildItem '.release-parts\chunk_*.b64' | Sort-Object Name)
             $diagnostic.Add("Chunk count: $($parts.Count)")
             $diagnostic.Add("Chunk names: $($parts.Name -join ', ')")
+            $chunkLengths = foreach ($part in $parts) {
+              $chunkText = (Get-Content $part.FullName -Raw) -replace '\s',''
+              "$($part.Name)=$($chunkText.Length)"
+            }
+            $diagnostic.Add("Chunk lengths: $($chunkLengths -join ', ')")
             if ($parts.Count -ne 27) {
               throw "Expected 27 release chunks, found $($parts.Count)."
             }
