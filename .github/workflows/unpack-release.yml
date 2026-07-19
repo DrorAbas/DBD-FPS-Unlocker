@@ -6,6 +6,11 @@ on:
     paths:
       - '.release-parts/**'
       - '.github/workflows/unpack-release.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.release-parts/**'
+      - '.github/workflows/unpack-release.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +21,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - name: Rebuild release and source
         shell: pwsh
         run: |
@@ -45,4 +52,8 @@ jobs:
           git add -A
           if (git diff --cached --quiet) { exit 0 }
           git commit -m "Add release package and application source"
-          git push
+          if ($env:GITHUB_HEAD_REF) {
+            git push origin HEAD:$env:GITHUB_HEAD_REF
+          } else {
+            git push
+          }
