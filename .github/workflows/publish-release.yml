@@ -98,3 +98,36 @@ jobs:
               --latest \
               --repo "$GITHUB_REPOSITORY"
           fi
+
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" \
+            --json url,tagName,name,isDraft,isPrerelease \
+            > /tmp/release-status.json
+
+      - name: Record successful publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs
+          cat > docs/RELEASE_STATUS.md <<EOF
+          # Release status
+
+          **DBD FPS Unlocker v1.0.0 has been published successfully.**
+
+          - Release page: https://github.com/${GITHUB_REPOSITORY}/releases/tag/v1.0.0
+          - Direct ZIP: https://github.com/${GITHUB_REPOSITORY}/releases/download/v1.0.0/DBD-FPS-Unlocker-v1.0.0.zip
+          - SHA-256 file: https://github.com/${GITHUB_REPOSITORY}/releases/download/v1.0.0/SHA256SUMS.txt
+          - Workflow commit: ${GITHUB_SHA}
+
+          The release asset was verified before publication.
+          EOF
+
+          cp dist/SHA256SUMS.txt dist/SHA256SUMS.txt.tmp
+          mv dist/SHA256SUMS.txt.tmp dist/SHA256SUMS.txt
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/RELEASE_STATUS.md dist/SHA256SUMS.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record published v1.0.0 release'
+            git push
+          fi
