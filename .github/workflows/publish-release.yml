@@ -1,0 +1,100 @@
+name: Publish DBD FPS Unlocker release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dist/DBD-FPS-Unlocker-v1.0.0.zip'
+      - '.github/workflows/publish-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f dist/DBD-FPS-Unlocker-v1.0.0.zip
+          sha256sum dist/DBD-FPS-Unlocker-v1.0.0.zip | tee dist/SHA256SUMS.txt
+
+      - name: Prepare release notes
+        shell: bash
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          # DBD FPS Unlocker v1.0.0
+
+          A portable Windows tool for configuring Dead by Daylight FPS settings through a simple graphical interface.
+
+          ## Download
+
+          Download **DBD-FPS-Unlocker-v1.0.0.zip** from the Assets section below.
+
+          ## How to use
+
+          1. Download and extract the ZIP.
+          2. Close Dead by Daylight completely.
+          3. Run `Start_DBD_FPS_Unlocker.cmd`.
+          4. Start with **Standard — FPS limit only**.
+          5. Use the experimental method only if DBD remains capped at 120 FPS.
+
+          ## Included
+
+          - FPS selection from 30 to 360
+          - Automatic configuration detection
+          - Backups before every change
+          - Verification and automatic rollback
+          - Restore latest backup
+          - Optional Read-only protection
+          - English, Hebrew, Spanish, German and French
+          - Delayed help tooltips for important options
+
+          ## Important safety notice
+
+          This is an unofficial community tool. It is not affiliated with or approved by Behaviour Interactive.
+
+          Changing game configuration files is done at your own risk. Community reports of long-term use without bans are not an official guarantee. Read the **Rules, ban risk and community reports** section at the bottom of the repository README before using the tool.
+
+          The experimental fixed-frame-rate method can affect engine timing and may cause slow motion, stutter or unusual animation if the selected FPS cannot be maintained.
+
+          ## AI disclosure
+
+          This project was created with substantial AI assistance, including OpenAI's ChatGPT. The project owner directed the requirements, design, testing and revisions. See `AI_DISCLOSURE.md` in the repository for the full disclosure.
+
+          ## Integrity check
+
+          `SHA256SUMS.txt` is included in the Assets section for users who want to verify the downloaded ZIP.
+          EOF
+
+      - name: Create or update GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG='v1.0.0'
+          ZIP='dist/DBD-FPS-Unlocker-v1.0.0.zip'
+          SUMS='dist/SHA256SUMS.txt'
+
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ZIP" "$SUMS" --clobber --repo "$GITHUB_REPOSITORY"
+            gh release edit "$TAG" \
+              --title 'DBD FPS Unlocker v1.0.0' \
+              --notes-file /tmp/release-notes.md \
+              --latest \
+              --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" "$ZIP" "$SUMS" \
+              --target main \
+              --title 'DBD FPS Unlocker v1.0.0' \
+              --notes-file /tmp/release-notes.md \
+              --latest \
+              --repo "$GITHUB_REPOSITORY"
+          fi
